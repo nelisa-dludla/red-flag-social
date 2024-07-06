@@ -1,0 +1,11 @@
+{% extends 'reports/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<div>
+		<div>
+			<h2>{{ user.username }}</h2>
+			<p class='text-secondary'>{{ user.email}}</p>
+		</div>
+		<!-- Form -->
+	</div>
+{% endblock content %}
