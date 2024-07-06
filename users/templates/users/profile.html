@@ -7,5 +7,15 @@
 			<p class='text-secondary'>{{ user.email}}</p>
 		</div>
 		<!-- Form -->
+		<form method='POST'>
+			{% csrf_token %}
+			<fieldset class='form-group'>
+				<legend class='border-bottom mb-4 fw-bold'>Profile Info</legend>
+				{{ user_form|crispy }}
+			</fieldset>
+			<div class='form-group'>
+				<button class='bg-custom-green rounded p-2' type='submit'>Update</button>
+			</div>
+		</form>
 	</div>
 {% endblock content %}
