@@ -40,23 +40,34 @@
 		<div class="container d-flex justify-content-between p-5">
 			<!-- LHS -->
 			<!-- Content Block -->
-			<div class='w-100 my-auto'>
+			{% if title %}
+				<div class='w-100 my-auto border border-1 shadow bg-white rounded p-4' style='max-width: 800px;'>
+			{% else %}
+				<div class='w-100 my-auto'>
+			{% endif %}
+				{% if messages %}
+					{% for message in messages %}
+						<div class='alert alert-{{ message.tags }}'>
+							{{ message }}
+						</div>
+					{% endfor %}
+				{% endif %}
 				{% block content %}{% endblock %}
 			</div>
 			<!-- RHS -->
 			<!-- Quick Links -->
 			{% if title %}
 				<div>
-					<div class='bg-white border border-1 border-black rounded shadow p-4' style='width: 300px;'>
-						<p class='text-secondary fw-bold'>Quick Links</p>
+					<div class='bg-white border border-1 rounded shadow p-4' style='width: 300px;'>
+						<p class='text-secondary fw-bold border-bottom pb-3'>Quick Links</p>
 						<ul class='list-unstyled'>
-							<li>
+							<li class='pb-2'>
 								<a class='text-black fw-bold text-decoration-none' href="{% url 'reports-index' %}">Search</a>
 							</li>
-							<li>
+							<li class='pb-2'>
 								<a class='text-black fw-bold text-decoration-none'  href="#">Submit a Report</a>
 							</li>
-							<li>
+							<li class='pb-2'>
 								<a class='text-black fw-bold text-decoration-none'  href="{% url 'reports-about'%}">Learn More</a>
 							</li>
 						</ul>
