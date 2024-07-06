@@ -1,4 +1,12 @@
 {% extends 'reports/base.html' %}
 {% block content %}
-	<h1>Index</h1>
+	<div class='d-flex flex-column m-auto'>
+		<h1 class='fw-bold text-center mb-5'>Red Flag Social</h1>
+		<input class='p-3 rounded-pill border-1 border-black' type="text" placeholder='johndoe123'>
+		<!-- Buttons -->
+		<div class='d-flex justify-content-evenly mt-5 mx-auto' style='width: 400px;'>
+			<button class='bg-custom-green rounded p-3 fw-bold' style='width: 150px;'>Search</button>
+			<button class='bg-custom-green rounded p-3 fw-bold' style='width: 150px;'><a class='text-black text-decoration-none' href="{% url 'reports-about' %}">Learn More</a></button>
+		</div>
+	</div>
 {% endblock content %}
