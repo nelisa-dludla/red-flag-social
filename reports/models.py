@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 class Report(models.Model):
     # Social Media Platform
@@ -14,3 +15,6 @@ class Report(models.Model):
     created_at =  models.DateTimeField(auto_now_add=True)
     # Reported By
     reported_by = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse('report-detail', kwargs={'pk': self.pk})

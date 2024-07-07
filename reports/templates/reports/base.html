@@ -54,7 +54,7 @@
 		<div class="container d-flex justify-content-between p-5">
 			<!-- LHS -->
 			<!-- Content Block -->
-			{% if title != 'Search' %}
+			{% if title != 'Search' and title != 'Results' %}
 				<div class='w-100 my-auto border border-1 shadow bg-white rounded p-4' style='max-width: 800px;'>
 			{% else %}
 				<div class='w-100 my-auto'>
@@ -73,17 +73,17 @@
 			{% if title != 'Search' %}
 				<div>
 					<div class='bg-white border border-1 rounded shadow p-4' style='width: 300px;'>
-						<p class='text-secondary fw-bold border-bottom pb-3'>Quick Links</p>
-						<ul class='list-unstyled'>
-							<li class='pb-2'>
-								<a class='text-black fw-bold text-decoration-none' href="{% url 'reports-index' %}">Search</a>
-							</li>
-							<li class='pb-2'>
-								<a class='text-black fw-bold text-decoration-none'  href="#">Submit a Report</a>
-							</li>
-							<li class='pb-2'>
-								<a class='text-black fw-bold text-decoration-none'  href="{% url 'reports-about' %}">Learn More</a>
-							</li>
+						<p class='text-secondary fw-bold'>Quick Links</p>
+						<ul class='list-group list-unstyled'>
+							<a class='text-black fw-bold text-decoration-none' href="{% url 'reports-index' %}">
+								<li class='list-group-item pb-2'>Search</li>
+							</a>
+							<a class='text-black fw-bold text-decoration-none'  href="{% url 'report-create' %}">
+								<li class='list-group-item pb-2'>Submit a Report</li>
+							</a>
+							<a class='text-black fw-bold text-decoration-none'  href="{% url 'reports-about' %}">
+								<li class='list-group-item pb-2'>Learn More</li>
+							</a>
 						</ul>
 					</div>
 				</div>

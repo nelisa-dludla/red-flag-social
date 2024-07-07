@@ -1,0 +1,41 @@
+{% extends 'reports/base.html' %}
+{% block content %}
+	<div style='max-width: 800px;'>
+		<h2>Search Results for @johndoe123</h2>
+		<!-- Disclaimer 1 -->
+		<div class='bg-custom-orange p-4 mt-5 mb-3 rounded shadow'>
+			<p class='m-auto'>
+				Red Flag Social identified reports associated with this handle.<br/>
+				Please review the information below to make informed decisions.
+			</p>
+		</div>
+		<!-- Disclaimer 2 -->
+		<div class='bg-custom-orange p-4 rounded shadow'>
+			<p class='m-auto'>
+				<span class='fw-bold'>Disclaimer: </span>These reports are user-submitted and haven't been verified by Red Flag Social.
+			</p>
+		</div>
+		<!-- Reports List -->
+
+		<div class='mt-5'>
+			<!-- If reports found -->
+			{% if reports %}
+				<!-- Number of reports -->
+				{% if number_of_reports > 1 %}
+					<h3>{{ number_of_reports }} Reports</h3>
+				{% else %}
+					<h3>{{ number_of_reports }} Report</h3>
+				{% endif %}
+				<!-- Rendering reports -->
+				{% for report in reports %}
+					<a class='text-decoration-none text-black' href="{% url 'report-detail' report.id %}">
+						<div class='d-flex justify-content-between bg-custom-gray rounded shadow p-3'>
+							<p class='my-auto'>{{ report.category }}</p>
+							<p class='my-auto'>{{ report.created_at|date:'F d, Y' }}</p>
+						</div>
+					</a>
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+{% endblock content %}

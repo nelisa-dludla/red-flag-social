@@ -1,0 +1,18 @@
+{% extends 'reports/base.html' %}
+{% block content %}
+	<div>
+		<h2>View Report</h2>
+		<p class='fw-bold'>Social Media Platform</p>
+		<p>{{ object.social_media_platform }}</p>
+		<p class='fw-bold'>Social Media Handle</p>
+		<p>{{ object.social_media_handle }}</p>
+		<p class='fw-bold'>Category</p>
+		<p>{{ object.category }}</p>
+		<p class='fw-bold'>Details</p>
+		<p>{{ object.description }}</p>
+	</div>
+	{% if object.reported_by == user %}
+		<a class='btn btn-secondary btn-sm mt-1 mb-1' href="{% url 'report-update' object.id %}">Update</a>
+		<a class='btn btn-danger btn-sm mt-1 mb-1' href="{% url 'report-delete' object.id %}">Delete</a>
+	{% endif %}
+{% endblock %}
