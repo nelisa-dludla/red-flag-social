@@ -8,13 +8,13 @@
 				<legend class='border-bottom mb-4 fw-bold'>Register</legend>
 				{{ form|crispy }}
 			</fieldset>
-			<div class='form-group'>
-				<button class='bg-custom-green rounded p-2' type='submit'>Register</button>
+			<div class='form-group mb-4'>
+				<button class='btn btn-success p-2 fw-semibold' type='submit'>Create Your Account</button>
 			</div>
 		</form>
 		<div class='border-top pt-3'>
 			<small class='text-muted'>
-				Already Have An Account? <a class='ml-2' href="{% url 'login' %}">Log In</a>
+				Already Have An Account? <a class='ml-2 link-offset-2' href="{% url 'login' %}">Log In</a>
 			</small>
 		</div>
 	</div>

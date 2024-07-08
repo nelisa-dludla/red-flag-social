@@ -8,16 +8,16 @@
 				<legend class='border-bottom mb-4 fw-bold'>Log In</legend>
 				{{ form|crispy }}
 			</fieldset>
-			<div class='form-group'>
-				<button class='bg-custom-green rounded p-2' type='submit'>Login</button>
-				<small class='text-muted ml-2'>
-					<a href="{% url 'password_reset' %}">Forgot Password?</a>
+			<div class='form-group flex d-flex justify-content-between align-items-center mb-4'>
+				<button class='btn btn-success fw-semibold rounded p-2' type='submit'>Log Me In</button>
+				<small class='text-muted me-2'>
+					<a class='link-offset-2' href="{% url 'password_reset' %}">Forgot Password?</a>
 				</small>
 			</div>
 		</form>
 		<div class='border-top pt-3'>
 			<small class='text-muted'>
-				Need An Account? <a class='ml-2' href="{% url 'register' %}">Sign Up</a>
+				Need An Account? <a class='link-offset-2 ml-2' href="{% url 'register' %}">Sign Up</a>
 			</small>
 		</div>
 	</div>

@@ -14,9 +14,9 @@
 				{{ user_form|crispy }}
 			</fieldset>
 			<div class='form-group'>
-				<button class='btn btn-secondary fw-semibold' type='submit'>Update</button>
+				<button class='btn btn-success fw-semibold' type='submit'>Update</button>
 			</div>
 		</form>
 	</div>
-		<a href="{% url 'user-reports' user.username %}"><h4 class='mt-4' >My Reports</h4></a>
+		<a class='link-offset-2' href="{% url 'user-reports' user.username %}"><h4 class='mt-4' >My Reports</h4></a>
 {% endblock content %}
