@@ -10,6 +10,7 @@ from django.views.generic import (
         DeleteView
 )
 from .models import Report
+from .forms import ReportForm
 
 def index(request):
     context = {
@@ -69,12 +70,7 @@ class ReportDetailView(DetailView):
 
 class ReportCreateView(LoginRequiredMixin, CreateView):
     model = Report
-    fields = [
-        'social_media_platform',
-        'social_media_handle',
-        'category',
-        'description'
-    ]
+    form_class = ReportForm
 
     def form_valid(self, form):
         form.instance.reported_by = self.request.user
