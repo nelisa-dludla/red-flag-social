@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.http import HttpResponseForbidden
+from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from django.views.generic import (
         ListView,
         DetailView,
@@ -15,20 +17,50 @@ def index(request):
     }
     return render(request, 'reports/index.html', context=context)
 
-class ReportListView(ListView):
+class SearchReportListView(ListView):
     model = Report
     template_name = 'reports/results.html'
     context_object_name = 'reports'
     ordering = ['-created_at']
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
-        reports = Report.objects.all()
-
         context = super().get_context_data(**kwargs)
         context['title'] = 'Results'
-        context['reports'] = reports
-        context['number_of_reports'] = reports.count()
+        context['number_of_reports'] = context['reports'].count()
+        context['query'] = self.request.GET.get('q')
         return context
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            object_list = Report.objects.filter(social_media_handle__icontains=query)
+        else:
+            object_list = Report.objects.none()
+        return object_list
+
+
+class UserReportListView(LoginRequiredMixin, ListView):
+    model = Report
+    template_name = 'reports/user_reports.html'
+    context_object_name = 'reports'
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Results'
+        context['number_of_reports'] = context['reports'].count()
+        return context
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Report.objects.filter(reported_by=user).order_by('-created_at')
+
+    def dispatch(self, request, *args, **kwargs):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        if user != self.request.user:
+            return HttpResponseForbidden()
+        return super().dispatch(request, *args, **kwargs)
 
 
 class ReportDetailView(DetailView):

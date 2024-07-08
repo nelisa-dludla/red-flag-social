@@ -1,12 +1,16 @@
 {% extends 'reports/base.html' %}
+{% load static %}
 {% block content %}
 	<div class='d-flex flex-column m-auto'>
-		<h1 class='fw-bold text-center mb-5'>Red Flag Social</h1>
-		<input class='p-3 rounded-pill border-1 border-black' type="text" placeholder='johndoe123'>
-		<!-- Buttons -->
-		<div class='d-flex justify-content-evenly mt-5 mx-auto' style='width: 400px;'>
-			<button class='bg-custom-green rounded p-3 fw-bold' style='width: 150px;'>Search</button>
-			<button class='bg-custom-green rounded p-3 fw-bold' style='width: 150px;'><a class='text-black text-decoration-none' href="{% url 'reports-about' %}">Learn More</a></button>
-		</div>
+		<img class='mb-5' src="{% static 'Logo.svg' %}" height=70rem alt="Red Flag Social Logo">
+		<form action="{% url 'search_results' %}" method='GET'>
+			<!-- <i class="bi bi-search"></i> -->
+			<input class='px-5 p-3 w-100 rounded-pill border-1 border-white' name='q' type="text" required placeholder='e.g. johndoe123'>
+			<!-- Buttons -->
+			<div class='d-flex justify-content-evenly mt-5 mx-auto' style='width: 400px;'>
+				<button class='bg-custom-green border-0 shadow rounded p-3 fw-bold' type='submit' style='width: 150px;'>Search</button>
+				<button class='bg-custom-green border-0 shadow rounded p-3 fw-bold' style='width: 150px;'><a class='text-black text-decoration-none' href="{% url 'reports-about' %}">Learn More</a></button>
+			</div>
+		</form>
 	</div>
 {% endblock content %}

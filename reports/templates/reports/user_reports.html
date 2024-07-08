@@ -1,35 +1,23 @@
 {% extends 'reports/base.html' %}
 {% block content %}
 	<div style='max-width: 800px;'>
-		<h2 class='fw-bold'>Search Results for "{{ query }}":</h2>
+		<h1 class='fw-bold'>Reports By {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
 		<!-- Reports List -->
+
 		<div class='mt-5'>
 			<!-- If reports found -->
 			{% if reports %}
-				<!-- Disclaimer 1 -->
-				<div class='bg-custom-orange p-4 mt-5 mb-3 rounded shadow'>
-					<p class='m-auto'>
-						Red Flag Social identified reports associated with this handle.<br/>
-						Please review the information below to make informed decisions.
-					</p>
-				</div>
-				<!-- Disclaimer 2 -->
-				<div class='bg-custom-orange p-4 rounded shadow'>
-					<p class='m-auto'>
-						<span class='fw-bold'>Disclaimer: </span>These reports are user-submitted and haven't been verified by Red Flag Social.
-					</p>
-				</div>
 				<!-- Number of reports -->
 				{% if number_of_reports > 1 %}
-					<h3 class='mt-5'>{{ number_of_reports }} Reports</h3>
+					<h3>{{ number_of_reports }} Reports</h3>
 				{% else %}
-					<h3 class='mt-5'>{{ number_of_reports }} Report</h3>
+					<h3>{{ number_of_reports }} Report</h3>
 				{% endif %}
 				<!-- Rendering reports -->
 				{% for report in reports %}
 					<a class='text-decoration-none text-black' href="{% url 'report-detail' report.id %}">
 						<div class='d-flex justify-content-between bg-custom-gray rounded shadow p-3 my-3'>
-							<p class='my-auto'>{{ report.category }}</p>
+							<p class='my-auto'>{{ report.social_media_handle }} - {{ report.category }}</p>
 							<p class='my-auto'>{{ report.created_at|date:'F d, Y' }}</p>
 						</div>
 					</a>
@@ -55,16 +43,6 @@
 						<a class='fw-semibold btn btn-outline-success mt-4 mb-4' href="?page={{ page_obj.paginator.num_pages }}">Last</a>
 					{% endif %}
 				{% endif %}
-			{% else %}
-				<div class='bg-custom-gray p-4 mt-5 mb-3 rounded shadow'>
-					<p class='m-auto'>
-						<span class='fw-bold'>No Reports Found:</span><br/><br/>
-
-						There are currently no reports associated with "{{ query }}" on Red Flag Social.
-						This doesn't necessarily mean the account is safe, so proceed with caution.
-					</p>
-				</div>
-
 			{% endif %}
 		</div>
 	</div>
