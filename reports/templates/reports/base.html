@@ -15,46 +15,73 @@
 	<link rel="icon" type='image/x-icon' href="{% static 'red_flag_icon.svg' %}">
 </head>
 <body class='bg-custom-white d-flex flex-column min-vh-100'>
-        <header>
-            <nav class='p-2 bg-custom-green' style='height: 5em;'>
-                <ul class='nav justify-content-between mx-5'>
-                    <!-- LHS -->
-                    <div>
-                        <!-- Logo -->
-                        <li class='nav-item'>
-                            <a class='nav-link text-black fs-5 fw-bold p-3' href="{% url 'reports-index' %}">
-                                <img src="{% static 'Logo.svg' %}" height=30rem alt="Red Flag Social Logo">
-                            </a>
-                        </li>
-                    </div>
-                    <!-- RHS -->
-                    <div class='d-flex my-auto'>
-                        {% if user.is_authenticated %}
-                            <!-- Profile -->
-                            <li class='nav-item'>
-                                <a class='nav-link text-black fs-6 fw-bold p-3' href="{% url 'profile' %}">Profile</a>
-                            </li>
-                            <!-- Logout -->
-                            <li class='nav-item'>
-                                <form action="{% url 'logout' %}" method='POST'>
-                                    {% csrf_token %}
-                                    <button class='bg-custom-green border-0 text-black fs-6 fw-bold p-3' type='submit'>Logout</button>
-                                </form>
-                            </li>
-                        {% else %}
-                            <!-- Login -->
-                            <li class='nav-item'>
-                                <a class='nav-link text-black fs-6 fw-bold p-3' href="{% url 'login' %}">Login</a>
-                            </li>
-                            <!-- Register -->
-                            <li class='nav-item'>
-                                <a class='nav-link text-black fs-6 fw-bold p-3' href="{% url 'register' %}">Register</a>
-                            </li>
-                        {% endif %}
-                    </div>
-                </ul>
-            </nav>
-        </header>
+<header>
+    <nav class='navbar navbar-expand-lg p-2 bg-custom-green' style='height: 5em;'>
+        <div class='d-flex w-100'>
+            <!-- Logo -->
+            <a class='navbar-brand text-black fs-5 fw-bold p-3' href="{% url 'reports-index' %}">
+                <img src="{% static 'Logo.svg' %}" height="30rem" alt="Red Flag Social Logo">
+            </a>
+            <!-- Hamburger Menu -->
+            <button class='navbar-toggler ms-auto' type='button' data-bs-toggle='collapse' data-bs-target='#navbarContent' aria-controls='navbarContent' aria-expanded='false' aria-label='Toggle navigation'>
+                <span class='navbar-toggler-icon'></span>
+            </button>
+        </div>
+
+        <!-- Hamburger Menu Content -->
+        <div class='collapse navbar-collapse ms-auto' id='navbarContent'>
+            <ul class='navbar-nav ms-auto mb-2 mb-lg-0 bg-custom-menu'>
+                {% if user.is_authenticated %}
+					<!-- Search -->
+                    <li class='nav-item d-lg-none'>
+                        <a class='nav-link text-black fs-6 fw-bold p-3' href="{% url 'reports-index' %}">Search</a>
+                    </li>
+					<!-- Submit Report -->
+                    <li class='nav-item d-lg-none'>
+                        <a class='nav-link text-black fs-6 fw-bold p-3' href="{% url 'report-create' %}">Submit a Report</a>
+                    </li>
+					<!-- Learn More -->
+                    <li class='nav-item d-lg-none'>
+                        <a class='nav-link text-black fs-6 fw-bold p-3' href="{% url 'reports-about' %}">Learn More</a>
+                    </li>
+                    <!-- Profile -->
+                    <li class='nav-item'>
+                        <a class='nav-link text-black fs-6 fw-bold p-3' href="{% url 'profile' %}">Profile</a>
+                    </li>
+                    <!-- Logout -->
+                    <li class='nav-item'>
+                        <form action="{% url 'logout' %}" method='POST'>
+                            {% csrf_token %}
+                            <button class='bg-custom-green border-0 text-black fs-6 fw-bold p-3' type='submit'>Logout</button>
+                        </form>
+                    </li>
+                {% else %}
+					<!-- Search -->
+                    <li class='nav-item d-lg-none'>
+                        <a class='nav-link text-black fs-6 fw-bold p-3' href="{% url 'reports-index' %}">Search</a>
+                    </li>
+					<!-- Submit Report -->
+                    <li class='nav-item d-lg-none'>
+                        <a class='nav-link text-black fs-6 fw-bold p-3' href="{% url 'report-create' %}">Submit a Report</a>
+                    </li>
+					<!-- Learn More -->
+                    <li class='nav-item d-lg-none'>
+                        <a class='nav-link text-black fs-6 fw-bold p-3' href="{% url 'reports-about' %}">Learn More</a>
+                    </li>
+                    <!-- Login -->
+                    <li class='nav-item'>
+                        <a class='nav-link text-black fs-6 fw-bold p-3' href="{% url 'login' %}">Login</a>
+                    </li>
+                    <!-- Register -->
+                    <li class='nav-item'>
+                        <a class='nav-link text-black fs-6 fw-bold p-3' href="{% url 'register' %}">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</header>
+
         <main class='flex-grow-1'>
             {% if title != 'Search' %}
                 <div class="container d-flex justify-content-between p-5">
@@ -65,7 +92,7 @@
                 <!-- Content Block -->
                 {% if title != 'Search' and title != 'Results' and title != 'About' and title != 'Password reset sent' and title != 'Password reset confirm' %}
                     <div class='w-100 my-auto border border-1 shadow bg-white rounded p-4' style='max-width: 800px;'>
-				{% elif title == 'Results' %}
+				{% elif title == 'Results' or title == 'About' %}
                     <div class='w-100 my-auto d-flex justify-content-center' style='max-width: 800px;'>
 				{% elif title != 'Search' %}
                     <div class='w-100 my-auto d-flex justify-content-center' style='max-width: 800px; max-height: calc(100vh - 18em);'>
@@ -84,7 +111,7 @@
                 <!-- RHS -->
                 <!-- Quick Links -->
                 {% if title != 'Search' %}
-                    <div>
+                    <div class='d-none d-lg-block'>
                         <div class='bg-white border border-1 rounded shadow p-4' style='width: 300px;'>
                             <p class='text-secondary fw-bold'>Quick Links</p>
                             <ul class='list-group list-unstyled'>
