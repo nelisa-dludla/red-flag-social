@@ -21,14 +21,14 @@
 				</div>
 				<!-- Number of reports -->
 				{% if number_of_reports > 1 %}
-					<h3 class='mt-5'>{{ number_of_reports }} Reports</h3>
+					<h3 class='mt-5'>Reports ({{ number_of_reports }})</h3>
 				{% else %}
-					<h3 class='mt-5'>{{ number_of_reports }} Report</h3>
+					<h3 class='mt-5'>Reports ({{ number_of_reports }})</h3>
 				{% endif %}
 				<!-- Rendering reports -->
 				{% for report in reports %}
 					<a class='text-decoration-none text-black' href="{% url 'report-detail' report.id %}">
-						<div class='d-flex justify-content-between bg-custom-gray rounded shadow p-3 my-3'>
+						<div class='list-group-item-action list-group-item-success d-flex justify-content-between bg-custom-gray rounded shadow p-3 my-3'>
 							<p class='my-auto'>{{ report.category }}</p>
 							<p class='my-auto'>{{ report.created_at|date:'F d, Y' }}</p>
 						</div>

@@ -7,16 +7,32 @@ from django.views.generic import (
         DetailView,
         CreateView,
         UpdateView,
-        DeleteView
+        DeleteView,
+        View
 )
 from .models import Report
 from .forms import ReportForm
 
-def index(request):
-    context = {
-        'title': 'Search'
-    }
-    return render(request, 'reports/index.html', context=context)
+
+class IndexView(View):
+    template_name = 'reports/index.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'title': 'Search'
+        }
+        return render(request, self.template_name, context)
+
+
+class AboutView(View):
+    template_name = 'reports/about.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'title': 'About'
+        }
+        return render(request, self.template_name, context)
+
 
 class SearchReportListView(ListView):
     model = Report
@@ -106,10 +122,3 @@ class ReportDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == report.reported_by:
             return True
         return False
-
-
-def about(request):
-    context = {
-        'title': 'About',
-    }
-    return render(request, 'reports/about.html', context=context)

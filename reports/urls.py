@@ -1,5 +1,7 @@
 from django.urls import path
 from .views import (
+    IndexView,
+    AboutView,
     SearchReportListView,
     ReportDetailView,
     ReportCreateView,
@@ -8,11 +10,10 @@ from .views import (
     UserReportListView
 )
 
-from . import views
 
 urlpatterns = [
-    path('', views.index, name='reports-index'),
-    path('about/', views.about, name='reports-about'),
+    path('', IndexView.as_view(), name='reports-index'),
+    path('about/', AboutView.as_view(), name='reports-about'),
     path('user/<str:username>/reports/', UserReportListView.as_view(), name='user-reports'),
     path('search/', SearchReportListView.as_view(), name='search_results'),
     path('report/<int:pk>/', ReportDetailView.as_view(), name='report-detail'),
