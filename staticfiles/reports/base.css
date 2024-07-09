@@ -1,0 +1,45 @@
+.bg-custom-green {
+	background-color: #8CD867;
+	color: black;
+}
+
+.bg-custom-white {
+	background-color: #FAF9F6;
+}
+
+.bg-custom-orange {
+	background-color: #FFE2AC;
+}
+
+.bg-custom-gray {
+	background-color: #D9D9D9;
+}
+
+/* The hamburger menu icon */
+.navbar-toggler {
+    height: 3em;
+    border: none;
+}
+/* The drop down menu */
+.navbar-collapse {
+    background-color: #8CD867;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.bg-custom-menu {
+    background-color: #8CD867;
+}
+
+.bg-custom-menu .nav-item .nav-link,
+.bg-custom-menu .nav-item form button {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.bg-custom-menu .nav-item .nav-link:hover,
+.bg-custom-menu .nav-item form button:hover {
+    /* background-color: #C2F1AB; */
+	color: #000000;
+}

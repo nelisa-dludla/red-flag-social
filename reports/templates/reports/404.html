@@ -1,0 +1,10 @@
+{% extends 'reports/base.html' %}
+{% load static %}
+{% block content %}
+	<div style='max-width: 800px;'>
+		<figure class='figure'>
+			<img src="{% static 'page_not_found.svg' %}" class='figure-img img-fluid rounded' alt="404 Page Not Found Illustration">
+			<figcaption class='figure-caption'><a class='link-offset-2' href="https://storyset.com/web" target='_blank'>Web illustrations by Storyset</a></figcaption>
+		</figure>
+	</div>
+{% endblock content %}
