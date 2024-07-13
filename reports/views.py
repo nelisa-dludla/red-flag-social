@@ -51,7 +51,7 @@ class SearchReportListView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         if query:
-            object_list = Report.objects.filter(social_media_handle__icontains=query)
+            object_list = Report.objects.filter(social_media_handle__iexact=query)
         else:
             object_list = Report.objects.none()
         return object_list
