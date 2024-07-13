@@ -5,6 +5,8 @@ SOCIAL_MEDIA_PLATFORMS = [
     ('Facebook', 'Facebook'),
     ('Instagram', 'Instagram'),
     ('LinkedIn', 'LinkedIn'),
+    ('Snapchat', 'Snapcaht'),
+    ('TikTok', 'TikTok'),
     ('Twitter/X', 'Twitter/X')
 ]
 
