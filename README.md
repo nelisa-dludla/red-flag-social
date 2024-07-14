@@ -32,7 +32,21 @@ You can access the live application [here](https://red-flag-social.onrender.com/
 5.  **Submit a Report**
     -   Navigate to the report submission page.
     -   Fill in the details of the suspicious activity.
-    -   Submit the report for review.
+
+## Screenshots
+
+![Home Page](screenshots/home-page.png)
+*Home page*
+
+![Search Results](screenshots/search-results.png)
+*Search Results*
+
+![Report Submission](screenshots/report-submission.png)
+*Report Submission Form*
+
+## Demo Video
+
+Watch the demo video [here](https://drive.google.com/file/d/11rMJ82OfATnxJ2rXB804ThyIZGVEWwIn/view?usp=sharing)
 
 ## Technologies
 
